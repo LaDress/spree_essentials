@@ -1,6 +1,7 @@
 *.gem
 *.log
 *.sqlite3
+.idea
 .bundle
 .DS_Store
 coverage

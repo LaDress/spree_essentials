@@ -1,5 +1,6 @@
-
-<h1><%= t('.listing_uploads') %></h1>
+<% content_for :page_title do %>
+  <h1><%= t('.listing_uploads') %></h1>
+<% end %>
 
 <table class="index">
 	<tr>
@@ -9,7 +10,7 @@
 	  <th><%= sort_link @search, :attachment_file_size, t("upload.size") %></th>
 	  <th><%= t("action") %></th>
 	</tr>
- 
+
   <% @uploads.each do |upload| %>
     <tr id="<%= dom_id(upload) %>">
       <td class="thumbnail">
@@ -27,24 +28,27 @@
       </td>
     </tr>
   <% end %>
- 
+
 </table>
 
 <%= paginate @uploads %>
 
+<% content_for :sidebar_title do %>
+  <%= t(:search) %>
+<% end %>
 
 <% content_for :sidebar do %>
-
-<div class="box">
-  <h3><%= t(:search) %></h3>
-  <%= search_form_for [ :admin, @search ] do |f| %>
-    <p>
-      <%= f.label :alt_cont, t("description") %><br />
-      <%= f.text_field :alt_cont, :size => 25 %>
-    </p>
-    <p><%= button t("search") %></p>
-  <% end %>
-</div>
+  <div class="box">
+    <%= search_form_for [ :admin, @search ] do |f| %>
+      <div class="field">
+        <%= f.label :alt_cont, t("description") %><br />
+        <%= f.text_field :alt_cont, :size => 25 %>
+      </div>
+      <div class="field">
+        <%= button t("search") %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
 
 <div id="images"></div>
@@ -55,14 +59,14 @@
 
 <% content_for :head do %>
   <script type="text/javascript">
-    jQuery(document).ready(function(){  
-      
-      jQuery('#new_image_link').click(function(event) { 
+    jQuery(document).ready(function(){
+
+      jQuery('#new_image_link').click(function(event) {
         event.preventDefault();
         jQuery(this).hide();
         jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ jQuery('#images').html(r);} });
       });
-      
+
     });
   </script>
 <% end %>
