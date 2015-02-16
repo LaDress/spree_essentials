@@ -1,7 +1,4 @@
 class Spree::Upload < ::Spree::Asset
-  
-  default_scope where(:type => "Upload") if table_exists?
-  
   validate :no_attachement_errors
   
   has_attached_file :attachment,
@@ -30,5 +27,4 @@ class Spree::Upload < ::Spree::Asset
       false
     end
   end
-
 end
