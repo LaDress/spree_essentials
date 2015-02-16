@@ -3,13 +3,13 @@
 <% end %>
 
 <table class="index">
-	<tr>
-	  <th><%= t("thumbnail") %></th>
-	  <th><%= sort_link @search, :attachment_file_name, t("upload.file_name") %></th>
-	  <th><%= sort_link @search, :description, t("description") %></th>
-	  <th><%= sort_link @search, :attachment_file_size, t("upload.size") %></th>
-	  <th><%= t("action") %></th>
-	</tr>
+  <tr>
+    <th><%= t("thumbnail") %></th>
+    <th><%= sort_link @search, :attachment_file_name, t("upload.file_name") %></th>
+    <th><%= sort_link @search, :description, t("description") %></th>
+    <th><%= sort_link @search, :attachment_file_size, t("upload.size") %></th>
+    <th><%= t("action") %></th>
+  </tr>
 
   <% @uploads.each do |upload| %>
     <tr id="<%= dom_id(upload) %>">
